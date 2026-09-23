@@ -13,17 +13,15 @@ We engineered an autonomous Agentic Fraud Investigator combining:
 🛡️ **Deterministic Policy Layer**: Strict governance that prevents LLM prompt injections and enforces mandatory human approval roles (Senior Analyst, Compliance Officer) before sensitive actions (Account Freeze, SAR filings) can execute.
 📊 **Interactive Analyst Dashboard**: Real-time D3.js force-directed subgraph visualization, hypothesis meters, and chronological audit timelines.
 
-Special thanks to the @TigerGraph team for organizing an incredible hackathon pushing the boundaries of Graph + Agentic AI!
+Special thanks to @TigerGraphDB and @247pmstudio for organizing an incredible hackathon pushing the boundaries of Graph + Agentic AI!
 
-Check out our full walkthrough and open-source architecture in the repository! 🔗👇
+Check out our full walkthrough and open-source architecture in the repository! 🔗 https://github.com/hg5594176-source/TigerGraph.git
 
 #TigerGraph #GraphDatabase #AI #AgenticAI #GraphRAG #FraudDetection #MachineLearning #Fintech #Cybersecurity
 
----
-
 ## Option 2: X (Twitter) Thread
 
-1/5 🔍 Just submitted our entry for the @TigerGraphDB Agentic Fraud Investigation Hackathon! 
+1/5 🔍 Just submitted our entry for the @TigerGraphDB & @247pmstudio Agentic Fraud Investigation Hackathon! 
 
 Meet our autonomous fraud investigation agent powered by #TigerGraph Savanna, TigerVector & #LangGraph. Here is how it works 🧵👇
 
@@ -33,6 +31,6 @@ Meet our autonomous fraud investigation agent powered by #TigerGraph Savanna, Ti
 
 4/5 🛡️ **Zero-Trust Security Layer**: The LLM proposes, but our deterministic permission layer disposes. High-impact actions (Account Freeze, SAR Filings) strictly require human sign-off (Senior Analyst / Compliance Officer). Prompt injection immune!
 
-5/5 💻 Complete with a dark glassmorphism analyst dashboard with real-time D3.js case subgraphs, confidence bars, and audit timelines. 
+5/5 💻 Complete with a dark glassmorphism analyst dashboard with real-time D3.js case subgraphs, confidence bars, and audit timelines. Code: https://github.com/hg5594176-source/TigerGraph.git
 
-Big shoutout to @TigerGraphDB for empowering agents with graph knowledge! 🚀
+Huge thanks to @TigerGraphDB and @247pmstudio for hosting this challenge! 🚀

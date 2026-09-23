@@ -58,6 +58,62 @@ function setupEventListeners() {
             );
         }
     });
+
+    // Submission modal handlers
+    const submissionBtn = document.getElementById('submissionBtn');
+    if (submissionBtn) {
+        submissionBtn.addEventListener('click', openSubmissionModal);
+    }
+
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', closeSubmissionModal);
+    }
+
+    const modalCloseBottom = document.getElementById('modalCloseBottom');
+    if (modalCloseBottom) {
+        modalCloseBottom.addEventListener('click', closeSubmissionModal);
+    }
+
+    const modalBackdrop = document.getElementById('submissionModal');
+    if (modalBackdrop) {
+        modalBackdrop.addEventListener('click', (e) => {
+            if (e.target === modalBackdrop) {
+                closeSubmissionModal();
+            }
+        });
+    }
+
+    // Modal tabs
+    const modalTabs = document.querySelectorAll('.modal-tab');
+    modalTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            modalTabs.forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(p => p.style.display = 'none');
+            
+            tab.classList.add('active');
+            const targetId = tab.getAttribute('data-tab');
+            const targetPane = document.getElementById(targetId);
+            if (targetPane) {
+                targetPane.style.display = 'block';
+            }
+        });
+    });
+}
+
+function openSubmissionModal() {
+    const modal = document.getElementById('submissionModal');
+    if (modal) {
+        modal.style.display = 'flex';
+        loadSubmissionApiData();
+    }
+}
+
+function closeSubmissionModal() {
+    const modal = document.getElementById('submissionModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
 }
 
 function toggleNarrative() {
@@ -478,4 +534,106 @@ function renderDemoData(caseId = 'CASE-DEMO-2024') {
     };
 
     renderCase(demoData);
+}
+
+// ============================================================
+// Submission Form Helper & Copy Utilities
+// ============================================================
+
+async function loadSubmissionApiData() {
+    try {
+        const res = await fetch('/api/submission');
+        if (!res.ok) return;
+        const data = await res.json();
+        
+        if (data.social_posts_text) {
+            // Can sync if updated
+        }
+    } catch (e) {
+        console.log('Submission API loaded in static/offline mode.');
+    }
+}
+
+function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => {
+            showToast('✓ Copied to clipboard!');
+        }).catch(() => fallbackCopy(text));
+    } else {
+        fallbackCopy(text);
+    }
+}
+
+function fallbackCopy(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.opacity = '0';
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+        document.execCommand('copy');
+        showToast('✓ Copied to clipboard!');
+    } catch (err) {
+        showToast('Press Ctrl+C to copy');
+    }
+    document.body.removeChild(textArea);
+}
+
+function copyExperience() {
+    const text = `What worked well:
+- Sub-second execution of native compiled GSQL queries (BFS ring discovery across 590,000 transactions in <20ms).
+- The official tigergraph-mcp package provided standardized, async MCP tools (tigergraph__run_installed_query, tigergraph__get_neighbors, tigergraph__add_node) that connected seamlessly to our LangGraph state machine.
+- Composite key identity resolution reconstructed 13,500 distinct client entities without ground truth customer IDs.
+
+What was confusing or slow:
+- Query compilation time (INSTALL QUERY) on cloud clusters can take 1-3 minutes per query during rapid iteration.
+- Syntax debugging in multi-hop GSQL ACCUM statements can be tricky without line-level IDE linting.
+- Configuring SSL RESTPP ports (443 vs 9000) and token secrets required trial-and-error initially.
+
+What we wish existed:
+- Native streaming support for GSQL query outputs directly in the MCP protocol.
+- Out-of-the-box LangGraph agent templates pre-configured with tigergraph-mcp tools in the official repository.
+- Interpreted mode support for vectorSearch() without requiring temporary query compilation.`;
+    copyText(text);
+}
+
+function copyAnythingElse() {
+    const text = `We designed a deterministic zero-trust permission engine that prevents prompt injection attacks from executing unauthorized financial actions (e.g. account freezing or SAR filing strictly requires Senior Analyst / Compliance Officer sign-off). The entire system achieved 100% deterministic decision consistency across benchmark test passes with sub-2s end-to-end case resolution.`;
+    copyText(text);
+}
+
+function copyLinkedIn() {
+    const el = document.getElementById('linkedinPostContent');
+    if (el) copyText(el.innerText);
+}
+
+function copyTwitter() {
+    const el = document.getElementById('twitterPostContent');
+    if (el) copyText(el.innerText);
+}
+
+function copyBlogMarkdown() {
+    const text = `# Building an Autonomous Fraud Investigation Agent with TigerGraph Savanna, TigerVector, and LangGraph
+
+## Executive Summary
+Traditional fraud detection relies on isolated classification models that score transactions in real time. However, complex fraud schemes span multiple accounts, shared devices, and obscured relational trails. When an alert fires, human fraud analysts spend 30 to 45 minutes manually pivoting between disparate databases, transaction logs, device records, and bank compliance policies.
+
+For the HHGOA Agentic Fraud Investigation Hackathon, we engineered an end-to-end autonomous investigation system powered by TigerGraph Savanna, TigerVector, and LangGraph. Our agent reconstructs pseudo-identities across 590,000 IEEE-CIS transactions, traverses graph structures using installed GSQL algorithms, performs hybrid structural+vector precedent retrieval, and executes decisions under a strict, tamper-proof deterministic policy layer.
+
+View full post: https://github.com/hg5594176-source/TigerGraph/blob/main/submission/blog_draft.md`;
+    copyText(text);
+}
+
+function showToast(message) {
+    const toast = document.getElementById('toastNotification');
+    const msgEl = document.getElementById('toastMessage');
+    if (!toast) return;
+
+    if (msgEl) msgEl.innerText = message;
+    toast.style.display = 'flex';
+
+    setTimeout(() => {
+        toast.style.display = 'none';
+    }, 2400);
 }
