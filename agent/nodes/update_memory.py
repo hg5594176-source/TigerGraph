@@ -7,23 +7,23 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 from agent.state import AgentState
-from schema.tg_connection import get_tg_connection
+from agent.mcp_client import get_mcp_client
 
 
 def update_memory(state: AgentState) -> dict:
     """
-    Final node: persist case results and update vector memory.
+    Final node: persist case results and update vector memory via TigerGraph MCP.
     """
     case_id = state.get("case_id", "")
     narrative = state.get("narrative", "")
     status = state.get("status", "decided")
     errors = list(state.get("errors", []))
 
-    conn = get_tg_connection()
+    mcp = get_mcp_client()
 
-    # Update case status
+    # Update case status via tigergraph__add_node
     try:
-        conn.upsertVertex("FraudCase", case_id, attributes={
+        mcp.upsert_vertex("FraudCase", case_id, attributes={
             "status": status,
         })
         print(f"  [update_memory] Case {case_id} status → {status}")
@@ -38,7 +38,7 @@ def update_memory(state: AgentState) -> dict:
         model = SentenceTransformer(config.embedding.model_name)
         embedding = model.encode([narrative])[0].tolist()
 
-        conn.upsertVertex("FraudCase", case_id, attributes={
+        mcp.upsert_vertex("FraudCase", case_id, attributes={
             "narrative_embedding": embedding,
         })
         print(f"  [update_memory] Narrative re-embedded ({len(embedding)} dims)")
@@ -53,7 +53,7 @@ def update_memory(state: AgentState) -> dict:
         client_id = state.get("client_id", "")
         try:
             # Add risk flag to client
-            conn.upsertVertex("Client", client_id, attributes={
+            mcp.upsert_vertex("Client", client_id, attributes={
                 "risk_flags": [f"investigated_{case_id}"],
             })
         except Exception:

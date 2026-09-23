@@ -19,8 +19,14 @@ class TigerGraphConfig:
     graphname: str = "HHGOA_IEEE"
     username: str = "tigergraph"
     password: str = ""
+    secret: str = ""
+    api_token: str = ""
     rest_port: int = 443
     gs_port: int = 443
+    tg_cloud: bool = True
+    allowed_tools: str = ""
+    blocked_tools: str = ""
+    profile: str = "default"
 
 
 @dataclass
@@ -59,16 +65,24 @@ class Config:
 
 
 def load_config() -> Config:
-    """Load configuration from environment variables."""
+    """Load configuration from environment variables, compatible with tigergraph-mcp."""
     cfg = Config()
 
-    # TigerGraph
+    # TigerGraph (supporting tigergraph-mcp standards)
     cfg.tigergraph.host = os.getenv("TG_HOST", "")
     cfg.tigergraph.graphname = os.getenv("TG_GRAPHNAME", "HHGOA_IEEE")
     cfg.tigergraph.username = os.getenv("TG_USERNAME", "tigergraph")
     cfg.tigergraph.password = os.getenv("TG_PASSWORD", "")
-    cfg.tigergraph.rest_port = int(os.getenv("TG_REST_PORT", "443"))
+    cfg.tigergraph.secret = os.getenv("TG_SECRET", "")
+    cfg.tigergraph.api_token = os.getenv("TG_API_TOKEN", os.getenv("TG_JWT_TOKEN", ""))
+    # TG_RESTPP_PORT is tigergraph-mcp standard; fallback to TG_REST_PORT
+    rest_port_env = os.getenv("TG_RESTPP_PORT") or os.getenv("TG_REST_PORT", "443")
+    cfg.tigergraph.rest_port = int(rest_port_env)
     cfg.tigergraph.gs_port = int(os.getenv("TG_GS_PORT", "443"))
+    cfg.tigergraph.tg_cloud = os.getenv("TG_TGCLOUD", "true").lower() in ("true", "1", "yes")
+    cfg.tigergraph.allowed_tools = os.getenv("TG_ALLOWED_TOOLS", "")
+    cfg.tigergraph.blocked_tools = os.getenv("TG_BLOCKED_TOOLS", "")
+    cfg.tigergraph.profile = os.getenv("TG_DEFAULT_PROFILE", os.getenv("TG_PROFILE", "default"))
 
     # LLM
     cfg.llm.api_key = os.getenv("GOOGLE_API_KEY", "")
@@ -95,8 +109,8 @@ def validate_config(cfg: Config, require_tg: bool = True, require_llm: bool = Tr
     if require_tg:
         if not cfg.tigergraph.host:
             errors.append("TG_HOST is required. Set it in .env")
-        if not cfg.tigergraph.password:
-            errors.append("TG_PASSWORD is required. Set it in .env")
+        if not cfg.tigergraph.password and not cfg.tigergraph.api_token and not cfg.tigergraph.secret:
+            errors.append("TG_PASSWORD, TG_API_TOKEN, or TG_SECRET is required. Set it in .env")
     if require_llm:
         if not cfg.llm.api_key:
             errors.append("GOOGLE_API_KEY is required. Set it in .env")

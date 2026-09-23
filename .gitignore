@@ -25,7 +25,8 @@ data/processed/*
 Thumbs.db
 
 # IDE and editors
-.vscode/
+.vscode/*
+!.vscode/mcp.json
 .idea/
 *.swp
 *.swo

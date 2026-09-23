@@ -2308,5 +2308,740 @@
       "message": "Customer message would be sent to CLI-94451",
       "channel": "email+sms"
     }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.019152",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_db860a044e06",
+      "client_id": "CLI-84920",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_db860a044e06 flagged for analyst review",
+      "priority": "high"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.023152",
+    "action": "send_customer_message",
+    "params": {
+      "case_id": "CASE_db860a044e06",
+      "client_id": "CLI-84920",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Customer message would be sent to CLI-84920",
+      "channel": "email+sms"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.025150",
+    "action": "request_stepup_auth",
+    "params": {
+      "case_id": "CASE_db860a044e06",
+      "client_id": "CLI-84920",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Step-up auth requested for CLI-84920",
+      "method": "sms_otp"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.037530",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_bac24e5330de",
+      "client_id": "CLI-11409",
+      "typology": "Synthetic Identity Fraud",
+      "confidence": 0.7
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_bac24e5330de flagged for analyst review",
+      "priority": "medium"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.050614",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_49126c4d9de6",
+      "client_id": "CLI-55912",
+      "typology": "Synthetic Identity Fraud",
+      "confidence": 0.7
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_49126c4d9de6 flagged for analyst review",
+      "priority": "medium"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.065635",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_02f00f504f9d",
+      "client_id": "CLI-99231",
+      "typology": "Synthetic Identity Fraud",
+      "confidence": 0.7
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_02f00f504f9d flagged for analyst review",
+      "priority": "medium"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.079190",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_54d2420c679c",
+      "client_id": "CLI-70144",
+      "typology": "Synthetic Identity Fraud",
+      "confidence": 0.7
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_54d2420c679c flagged for analyst review",
+      "priority": "medium"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.094118",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_80ecee5b01e0",
+      "client_id": "CLI-33019",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_80ecee5b01e0 flagged for analyst review",
+      "priority": "high"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.096276",
+    "action": "send_customer_message",
+    "params": {
+      "case_id": "CASE_80ecee5b01e0",
+      "client_id": "CLI-33019",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Customer message would be sent to CLI-33019",
+      "channel": "email+sms"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.098681",
+    "action": "request_stepup_auth",
+    "params": {
+      "case_id": "CASE_80ecee5b01e0",
+      "client_id": "CLI-33019",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Step-up auth requested for CLI-33019",
+      "method": "sms_otp"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.111455",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_b63f06e1dc1a",
+      "client_id": "CLI-66481",
+      "typology": "Synthetic Identity Fraud",
+      "confidence": 0.7
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_b63f06e1dc1a flagged for analyst review",
+      "priority": "medium"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.124771",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_9c510445e0ea",
+      "client_id": "CLI-22904",
+      "typology": "Synthetic Identity Fraud",
+      "confidence": 0.7
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_9c510445e0ea flagged for analyst review",
+      "priority": "medium"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.136778",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_cb0e905ef797",
+      "client_id": "CLI-88123",
+      "typology": "Synthetic Identity Fraud",
+      "confidence": 0.7
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_cb0e905ef797 flagged for analyst review",
+      "priority": "medium"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.152684",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_54301df871b7",
+      "client_id": "CLI-44021",
+      "typology": "Synthetic Identity Fraud",
+      "confidence": 0.7
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_54301df871b7 flagged for analyst review",
+      "priority": "medium"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.167685",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_3b18156e58fd",
+      "client_id": "CLI-95102",
+      "typology": "Synthetic Identity Fraud",
+      "confidence": 0.7
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_3b18156e58fd flagged for analyst review",
+      "priority": "medium"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.180095",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_2705f9376b70",
+      "client_id": "CLI-12890",
+      "typology": "Card Testing / BIN Attack",
+      "confidence": 1.0
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_2705f9376b70 flagged for analyst review",
+      "priority": "high"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.183096",
+    "action": "send_customer_message",
+    "params": {
+      "case_id": "CASE_2705f9376b70",
+      "client_id": "CLI-12890",
+      "typology": "Card Testing / BIN Attack",
+      "confidence": 1.0
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Customer message would be sent to CLI-12890",
+      "channel": "email+sms"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.196186",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_557e84284682",
+      "client_id": "CLI-73349",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_557e84284682 flagged for analyst review",
+      "priority": "high"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.198699",
+    "action": "send_customer_message",
+    "params": {
+      "case_id": "CASE_557e84284682",
+      "client_id": "CLI-73349",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Customer message would be sent to CLI-73349",
+      "channel": "email+sms"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.200699",
+    "action": "request_stepup_auth",
+    "params": {
+      "case_id": "CASE_557e84284682",
+      "client_id": "CLI-73349",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Step-up auth requested for CLI-73349",
+      "method": "sms_otp"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.214699",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_867258f2ab9b",
+      "client_id": "CLI-51208",
+      "typology": "Synthetic Identity Fraud",
+      "confidence": 0.7
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_867258f2ab9b flagged for analyst review",
+      "priority": "medium"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.227703",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_9211a1cafbe6",
+      "client_id": "CLI-60032",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_9211a1cafbe6 flagged for analyst review",
+      "priority": "high"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.229746",
+    "action": "send_customer_message",
+    "params": {
+      "case_id": "CASE_9211a1cafbe6",
+      "client_id": "CLI-60032",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Customer message would be sent to CLI-60032",
+      "channel": "email+sms"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.232727",
+    "action": "request_stepup_auth",
+    "params": {
+      "case_id": "CASE_9211a1cafbe6",
+      "client_id": "CLI-60032",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Step-up auth requested for CLI-60032",
+      "method": "sms_otp"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.245264",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_09d3518786bb",
+      "client_id": "CLI-82194",
+      "typology": "Synthetic Identity Fraud",
+      "confidence": 0.7
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_09d3518786bb flagged for analyst review",
+      "priority": "medium"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.259238",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_72c7279ccf68",
+      "client_id": "CLI-39045",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_72c7279ccf68 flagged for analyst review",
+      "priority": "high"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.262051",
+    "action": "send_customer_message",
+    "params": {
+      "case_id": "CASE_72c7279ccf68",
+      "client_id": "CLI-39045",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Customer message would be sent to CLI-39045",
+      "channel": "email+sms"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.264050",
+    "action": "request_stepup_auth",
+    "params": {
+      "case_id": "CASE_72c7279ccf68",
+      "client_id": "CLI-39045",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Step-up auth requested for CLI-39045",
+      "method": "sms_otp"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.276559",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_4cc3e77ee932",
+      "client_id": "CLI-77412",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_4cc3e77ee932 flagged for analyst review",
+      "priority": "high"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.278563",
+    "action": "send_customer_message",
+    "params": {
+      "case_id": "CASE_4cc3e77ee932",
+      "client_id": "CLI-77412",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Customer message would be sent to CLI-77412",
+      "channel": "email+sms"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.280458",
+    "action": "request_stepup_auth",
+    "params": {
+      "case_id": "CASE_4cc3e77ee932",
+      "client_id": "CLI-77412",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Step-up auth requested for CLI-77412",
+      "method": "sms_otp"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.293479",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_06266559e921",
+      "client_id": "CLI-19830",
+      "typology": "Card Testing / BIN Attack",
+      "confidence": 1.0
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_06266559e921 flagged for analyst review",
+      "priority": "high"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.295467",
+    "action": "send_customer_message",
+    "params": {
+      "case_id": "CASE_06266559e921",
+      "client_id": "CLI-19830",
+      "typology": "Card Testing / BIN Attack",
+      "confidence": 1.0
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Customer message would be sent to CLI-19830",
+      "channel": "email+sms"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.307492",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_c7423436c6b2",
+      "client_id": "CLI-94451",
+      "typology": "Card Testing / BIN Attack",
+      "confidence": 1.0
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_c7423436c6b2 flagged for analyst review",
+      "priority": "high"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:51.310463",
+    "action": "send_customer_message",
+    "params": {
+      "case_id": "CASE_c7423436c6b2",
+      "client_id": "CLI-94451",
+      "typology": "Card Testing / BIN Attack",
+      "confidence": 1.0
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Customer message would be sent to CLI-94451",
+      "channel": "email+sms"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:57.107415",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_d058fd6ea3c3",
+      "client_id": "CLI-84920",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_d058fd6ea3c3 flagged for analyst review",
+      "priority": "high"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:57.110347",
+    "action": "send_customer_message",
+    "params": {
+      "case_id": "CASE_d058fd6ea3c3",
+      "client_id": "CLI-84920",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Customer message would be sent to CLI-84920",
+      "channel": "email+sms"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:57.112351",
+    "action": "request_stepup_auth",
+    "params": {
+      "case_id": "CASE_d058fd6ea3c3",
+      "client_id": "CLI-84920",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Step-up auth requested for CLI-84920",
+      "method": "sms_otp"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:57.124464",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_aa8d2dd911c2",
+      "client_id": "CLI-11409",
+      "typology": "Synthetic Identity Fraud",
+      "confidence": 0.7
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_aa8d2dd911c2 flagged for analyst review",
+      "priority": "medium"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:57.134781",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_28758ce18067",
+      "client_id": "CLI-55912",
+      "typology": "Synthetic Identity Fraud",
+      "confidence": 0.7
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_28758ce18067 flagged for analyst review",
+      "priority": "medium"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:57.147512",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_e8dd2f9551c8",
+      "client_id": "CLI-99231",
+      "typology": "Synthetic Identity Fraud",
+      "confidence": 0.7
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_e8dd2f9551c8 flagged for analyst review",
+      "priority": "medium"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:57.160161",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_0fa4934a7026",
+      "client_id": "CLI-70144",
+      "typology": "Synthetic Identity Fraud",
+      "confidence": 0.7
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_0fa4934a7026 flagged for analyst review",
+      "priority": "medium"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:57.173621",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_1b509a40bc3c",
+      "client_id": "CLI-84920",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_1b509a40bc3c flagged for analyst review",
+      "priority": "high"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:57.175922",
+    "action": "send_customer_message",
+    "params": {
+      "case_id": "CASE_1b509a40bc3c",
+      "client_id": "CLI-84920",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Customer message would be sent to CLI-84920",
+      "channel": "email+sms"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:57.178517",
+    "action": "request_stepup_auth",
+    "params": {
+      "case_id": "CASE_1b509a40bc3c",
+      "client_id": "CLI-84920",
+      "typology": "Account Takeover",
+      "confidence": 0.9
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Step-up auth requested for CLI-84920",
+      "method": "sms_otp"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:57.191208",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_c88df22e3370",
+      "client_id": "CLI-11409",
+      "typology": "Synthetic Identity Fraud",
+      "confidence": 0.7
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_c88df22e3370 flagged for analyst review",
+      "priority": "medium"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:57.202313",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_688c2c60deeb",
+      "client_id": "CLI-55912",
+      "typology": "Synthetic Identity Fraud",
+      "confidence": 0.7
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_688c2c60deeb flagged for analyst review",
+      "priority": "medium"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:57.215718",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_f2a4c6ffb726",
+      "client_id": "CLI-99231",
+      "typology": "Synthetic Identity Fraud",
+      "confidence": 0.7
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_f2a4c6ffb726 flagged for analyst review",
+      "priority": "medium"
+    }
+  },
+  {
+    "timestamp": "2026-09-23T17:51:57.229090",
+    "action": "flag_for_review",
+    "params": {
+      "case_id": "CASE_dffd0347306d",
+      "client_id": "CLI-70144",
+      "typology": "Synthetic Identity Fraud",
+      "confidence": 0.7
+    },
+    "result": {
+      "status": "simulated",
+      "message": "Case CASE_dffd0347306d flagged for analyst review",
+      "priority": "medium"
+    }
   }
 ]

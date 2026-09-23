@@ -6,11 +6,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 from agent.state import AgentState
-from schema.tg_connection import get_tg_connection
+from agent.mcp_client import get_mcp_client
 
 
 def resolve_entities(state: AgentState) -> dict:
-    """Pull client context and ring neighbors via installed GSQL queries."""
+    """Pull client context and ring neighbors via TigerGraph MCP tools."""
     client_id = state.get("client_id", "")
     errors = list(state.get("errors", []))
 
@@ -18,13 +18,13 @@ def resolve_entities(state: AgentState) -> dict:
         errors.append("No client_id available for entity resolution")
         return {"errors": errors}
 
-    conn = get_tg_connection()
+    mcp = get_mcp_client()
     client_context = {}
     ring_neighbors = []
 
-    # Get client context
+    # Get client context via tigergraph__run_installed_query
     try:
-        result = conn.runInstalledQuery("get_client_context",
+        result = mcp.run_installed_query("get_client_context",
                                          params={"client_id": client_id})
         if result:
             client_context = result[0] if isinstance(result, list) else result
@@ -33,19 +33,19 @@ def resolve_entities(state: AgentState) -> dict:
         errors.append(f"get_client_context failed: {e}")
         # Fallback: direct vertex lookup
         try:
-            vertex = conn.getVerticesById("Client", client_id)
+            vertex = mcp._get_fallback().getVerticesById("Client", client_id)
             if vertex:
                 client_context = {"client": vertex[0]}
         except Exception:
             pass
 
-    # Get ring neighbors (2-hop BFS)
+    # Get ring neighbors (2-hop BFS) via tigergraph__run_installed_query or tigergraph__get_neighbors
     try:
-        result = conn.runInstalledQuery("get_ring_neighbors",
+        result = mcp.run_installed_query("get_ring_neighbors",
                                          params={"client_id": client_id, "hops": 2})
         if result:
             for item in (result if isinstance(result, list) else [result]):
-                if "ring_neighbors" in item:
+                if isinstance(item, dict) and "ring_neighbors" in item:
                     ring_neighbors = item["ring_neighbors"]
         print(f"  [resolve_entities] Found {len(ring_neighbors)} ring neighbors")
     except Exception as e:

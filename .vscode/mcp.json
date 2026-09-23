@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "tigergraph": {
+      "command": "python",
+      "args": ["mcp_server.py", "--transport", "stdio"],
+      "env": {
+        "TG_GRAPHNAME": "HHGOA_IEEE",
+        "TG_RESTPP_PORT": "443",
+        "TG_GS_PORT": "443",
+        "TG_TGCLOUD": "true"
+      }
+    }
+  }
+}

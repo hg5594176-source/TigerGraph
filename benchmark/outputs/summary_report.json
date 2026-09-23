@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-23T16:49:24Z",
+  "timestamp": "2026-09-23T17:51:51Z",
   "total_cases": 20,
   "successful_cases": 20,
   "failed_cases": 0,
@@ -20,7 +20,7 @@
       "sar_filed": true,
       "stop_reason": "policy_mandate",
       "loops": 1,
-      "duration_sec": 0.033
+      "duration_sec": 0.031
     },
     {
       "case_id": "CASE-BENCH-002",
@@ -31,7 +31,7 @@
       "sar_filed": true,
       "stop_reason": "confident",
       "loops": 0,
-      "duration_sec": 0.014
+      "duration_sec": 0.013
     },
     {
       "case_id": "CASE-BENCH-003",
@@ -53,7 +53,7 @@
       "sar_filed": true,
       "stop_reason": "confident",
       "loops": 0,
-      "duration_sec": 0.014
+      "duration_sec": 0.012
     },
     {
       "case_id": "CASE-BENCH-005",
@@ -64,7 +64,7 @@
       "sar_filed": true,
       "stop_reason": "confident",
       "loops": 0,
-      "duration_sec": 0.015
+      "duration_sec": 0.014
     },
     {
       "case_id": "CASE-BENCH-006",
@@ -75,7 +75,7 @@
       "sar_filed": true,
       "stop_reason": "policy_mandate",
       "loops": 1,
-      "duration_sec": 0.025
+      "duration_sec": 0.019
     },
     {
       "case_id": "CASE-BENCH-007",
@@ -86,7 +86,7 @@
       "sar_filed": true,
       "stop_reason": "confident",
       "loops": 0,
-      "duration_sec": 0.017
+      "duration_sec": 0.013
     },
     {
       "case_id": "CASE-BENCH-008",
@@ -97,7 +97,7 @@
       "sar_filed": true,
       "stop_reason": "confident",
       "loops": 0,
-      "duration_sec": 0.015
+      "duration_sec": 0.012
     },
     {
       "case_id": "CASE-BENCH-009",
@@ -108,7 +108,7 @@
       "sar_filed": true,
       "stop_reason": "confident",
       "loops": 0,
-      "duration_sec": 0.013
+      "duration_sec": 0.015
     },
     {
       "case_id": "CASE-BENCH-010",
@@ -119,7 +119,7 @@
       "sar_filed": true,
       "stop_reason": "confident",
       "loops": 0,
-      "duration_sec": 0.017
+      "duration_sec": 0.013
     },
     {
       "case_id": "CASE-BENCH-011",
@@ -130,7 +130,7 @@
       "sar_filed": true,
       "stop_reason": "confident",
       "loops": 0,
-      "duration_sec": 0.016
+      "duration_sec": 0.012
     },
     {
       "case_id": "CASE-BENCH-012",
@@ -141,7 +141,7 @@
       "sar_filed": true,
       "stop_reason": "confident",
       "loops": 0,
-      "duration_sec": 0.019
+      "duration_sec": 0.012
     },
     {
       "case_id": "CASE-BENCH-013",
@@ -152,7 +152,7 @@
       "sar_filed": true,
       "stop_reason": "policy_mandate",
       "loops": 0,
-      "duration_sec": 0.022
+      "duration_sec": 0.019
     },
     {
       "case_id": "CASE-BENCH-014",
@@ -163,7 +163,7 @@
       "sar_filed": true,
       "stop_reason": "confident",
       "loops": 0,
-      "duration_sec": 0.014
+      "duration_sec": 0.011
     },
     {
       "case_id": "CASE-BENCH-015",
@@ -174,7 +174,7 @@
       "sar_filed": true,
       "stop_reason": "policy_mandate",
       "loops": 1,
-      "duration_sec": 0.032
+      "duration_sec": 0.017
     },
     {
       "case_id": "CASE-BENCH-016",
@@ -185,7 +185,7 @@
       "sar_filed": true,
       "stop_reason": "confident",
       "loops": 0,
-      "duration_sec": 0.015
+      "duration_sec": 0.013
     },
     {
       "case_id": "CASE-BENCH-017",
@@ -196,7 +196,7 @@
       "sar_filed": true,
       "stop_reason": "policy_mandate",
       "loops": 1,
-      "duration_sec": 0.02
+      "duration_sec": 0.017
     },
     {
       "case_id": "CASE-BENCH-018",
@@ -207,7 +207,7 @@
       "sar_filed": true,
       "stop_reason": "policy_mandate",
       "loops": 0,
-      "duration_sec": 0.018
+      "duration_sec": 0.016
     },
     {
       "case_id": "CASE-BENCH-019",
@@ -218,7 +218,7 @@
       "sar_filed": true,
       "stop_reason": "confident",
       "loops": 0,
-      "duration_sec": 0.015
+      "duration_sec": 0.014
     },
     {
       "case_id": "CASE-BENCH-020",

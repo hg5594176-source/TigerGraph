@@ -50,19 +50,19 @@
         "action": "flag_for_review",
         "approved_by": "system_auto",
         "requires_approval": false,
-        "decided_at": "2026-09-23T16:49:24.052703"
+        "decided_at": "2026-09-23T17:51:57.201729"
       },
       {
         "action": "freeze_account",
         "approved_by": "pending_senior_analyst",
         "requires_approval": true,
-        "decided_at": "2026-09-23T16:49:24.054707"
+        "decided_at": "2026-09-23T17:51:57.206742"
       },
       {
         "action": "file_sar",
         "approved_by": "pending_compliance_officer",
         "requires_approval": true,
-        "decided_at": "2026-09-23T16:49:24.054707"
+        "decided_at": "2026-09-23T17:51:57.206742"
       }
     ],
     "actions": [
@@ -74,7 +74,7 @@
   "case_subgraph": {
     "Case": [
       {
-        "v_id": "CASE_015db5c452e5",
+        "v_id": "CASE_688c2c60deeb",
         "v_type": "FraudCase",
         "attributes": {
           "narrative": "Simulated case narrative"
@@ -90,14 +90,14 @@
     ],
     "Transactions": [
       {
-        "v_id": "TXN-2e5-1",
+        "v_id": "TXN-eeb-1",
         "v_type": "Transaction",
         "attributes": {
           "amount": 1200.0
         }
       },
       {
-        "v_id": "TXN-2e5-2",
+        "v_id": "TXN-eeb-2",
         "v_type": "Transaction",
         "attributes": {
           "amount": 1800.0
@@ -106,7 +106,7 @@
     ],
     "Evidence": [
       {
-        "v_id": "EV-2e5-1",
+        "v_id": "EV-eeb-1",
         "v_type": "EvidenceItem",
         "attributes": {
           "description": "Velocity burst detected"
@@ -142,7 +142,7 @@
     ],
     "SupportsEdges": [
       {
-        "from_id": "EV-2e5-1",
+        "from_id": "EV-eeb-1",
         "to_id": "TYP-01",
         "e_type": "SUPPORTS",
         "attributes": {}
@@ -151,15 +151,15 @@
     "ContradictsEdges": [],
     "EvidenceEdges": [
       {
-        "from_id": "CASE_015db5c452e5",
-        "to_id": "EV-2e5-1",
+        "from_id": "CASE_688c2c60deeb",
+        "to_id": "EV-eeb-1",
         "e_type": "HAS_EVIDENCE",
         "attributes": {}
       }
     ],
     "ActionEdges": [
       {
-        "from_id": "CASE_015db5c452e5",
+        "from_id": "CASE_688c2c60deeb",
         "to_id": "ACT_BLOCK",
         "e_type": "TOOK_ACTION",
         "attributes": {}
@@ -169,7 +169,7 @@
   "sar_required": true,
   "next_best_action": "send_customer_message",
   "stop_reason": "confident",
-  "narrative": "## Fraud Investigation Report \u2014 Case CASE_015db5c452e5\n**Client:** CLI-55912\n**Status:** decided\n**Stop Reason:** confident\n\n### Hypothesis Analysis\n\u2192 **Synthetic Identity Fraud**: 70.0% confidence\n  **Friendly Fraud / Chargeback Abuse**: 35.0% confidence\n  **Card-Not-Present Fraud**: 10.0% confidence\n\n### Evidence Trail\n1. Client CLI-55912: 8 transactions totaling $4850.00, 2 cards, 1 devices, 0 prior cases, 2 ring neighbors\n2. Found 2 similar past cases: 0 confirmed fraud, 0 cleared\n3. Hypothesis: Synthetic Identity Fraud (confidence=0.70). Supporting signals: shared_device_ring, shared_email_ring, new_account, multiple_addresses. Contradicting signals: established_account.\n4. Hypothesis: Friendly Fraud / Chargeback Abuse (confidence=0.35). Supporting signals: repeated_disputes, high_chargeback_rate. Contradicting signals: first_dispute.\n5. Hypothesis: Card-Not-Present Fraud (confidence=0.10). Supporting signals: high_amount. Contradicting signals: known_device.\n\n### Actions Taken\n- **flag_for_review**: Auto-executed\n- **freeze_account**: Pending approval from senior_analyst\n- **file_sar**: Pending approval from compliance_officer\n\n### Conclusion\nStrong evidence supports **Synthetic Identity Fraud** with 70.0% confidence.",
-  "duration_sec": 0.014,
+  "narrative": "## Fraud Investigation Report \u2014 Case CASE_688c2c60deeb\n**Client:** CLI-55912\n**Status:** decided\n**Stop Reason:** confident\n\n### Hypothesis Analysis\n\u2192 **Synthetic Identity Fraud**: 70.0% confidence\n  **Friendly Fraud / Chargeback Abuse**: 35.0% confidence\n  **Card-Not-Present Fraud**: 10.0% confidence\n\n### Evidence Trail\n1. Client CLI-55912: 8 transactions totaling $4850.00, 2 cards, 1 devices, 0 prior cases, 2 ring neighbors\n2. Found 2 similar past cases: 0 confirmed fraud, 0 cleared\n3. Hypothesis: Synthetic Identity Fraud (confidence=0.70). Supporting signals: shared_device_ring, shared_email_ring, new_account, multiple_addresses. Contradicting signals: established_account.\n4. Hypothesis: Friendly Fraud / Chargeback Abuse (confidence=0.35). Supporting signals: repeated_disputes, high_chargeback_rate. Contradicting signals: first_dispute.\n5. Hypothesis: Card-Not-Present Fraud (confidence=0.10). Supporting signals: high_amount. Contradicting signals: known_device.\n\n### Actions Taken\n- **flag_for_review**: Auto-executed\n- **freeze_account**: Pending approval from senior_analyst\n- **file_sar**: Pending approval from compliance_officer\n\n### Conclusion\nStrong evidence supports **Synthetic Identity Fraud** with 70.0% confidence.",
+  "duration_sec": 0.013,
   "evidence_loop_count": 0
 }
