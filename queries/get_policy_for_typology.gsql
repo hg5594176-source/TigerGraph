@@ -1,0 +1,32 @@
+CREATE QUERY get_policy_for_typology(STRING typology_id) FOR GRAPH HHGOA_IEEE {
+    /*
+     * Traverses PolicyRule –APPLIES_TO→ TypologyPattern and
+     * ActionType –REQUIRES_APPROVAL_FROM→ Role.
+     * Returns policy rules and required approval roles for a given typology.
+     */
+
+    TYPEDEF TUPLE<STRING rule_id, STRING section, STRING text> RuleInfo;
+    TYPEDEF TUPLE<STRING action_id, STRING action_name, BOOL reversible, STRING required_role_id, STRING required_role_name> ActionApproval;
+
+    SetAccum<RuleInfo> @@policy_rules;
+    SetAccum<ActionApproval> @@action_approvals;
+
+    // Find the typology
+    all_typs = {TypologyPattern.*};
+    target = SELECT tp FROM all_typs:tp WHERE tp.id == typology_id;
+
+    // Get policy rules that apply to this typology
+    rules = SELECT pr FROM target:tp -(<APPLIES_TO:e)- PolicyRule:pr
+            ACCUM @@policy_rules += RuleInfo(pr.id, pr.section, pr.text);
+
+    // Get all action types and their required approvals
+    all_actions = {ActionType.*};
+    action_roles = SELECT r FROM all_actions:at -(REQUIRES_APPROVAL_FROM:e)- Role:r
+                   ACCUM @@action_approvals += ActionApproval(
+                       at.id, at.name, at.reversible, r.id, r.name
+                   );
+
+    PRINT typology_id;
+    PRINT @@policy_rules AS rules;
+    PRINT @@action_approvals AS action_approvals;
+}

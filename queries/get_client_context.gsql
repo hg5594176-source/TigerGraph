@@ -1,0 +1,67 @@
+CREATE QUERY get_client_context(STRING client_id) FOR GRAPH HHGOA_IEEE {
+    /*
+     * Returns full context for a client:
+     * - Cards owned
+     * - Devices used
+     * - Email domains
+     * - Transaction history summary (count, total, avg, date range)
+     * - Prior FraudCases
+     */
+
+    TYPEDEF TUPLE<STRING card_id, STRING card_type, STRING card_network> CardInfo;
+    TYPEDEF TUPLE<STRING device_id, STRING device_type, STRING device_info> DeviceInfo;
+    TYPEDEF TUPLE<STRING domain_id, STRING domain_name, BOOL is_free> DomainInfo;
+    TYPEDEF TUPLE<STRING case_id, STRING status, STRING trigger_type, DATETIME opened_at> CaseInfo;
+
+    SetAccum<CardInfo> @@cards;
+    SetAccum<DeviceInfo> @@devices;
+    SetAccum<DomainInfo> @@domains;
+    SetAccum<CaseInfo> @@cases;
+    SumAccum<INT> @@txn_count;
+    SumAccum<DOUBLE> @@txn_total;
+    MinAccum<DATETIME> @@first_txn;
+    MaxAccum<DATETIME> @@last_txn;
+    AvgAccum @@txn_avg;
+    SetAccum<STRING> @@risk_flags;
+
+    client = {Client.*};
+    target = SELECT c FROM client:c WHERE c.id == client_id
+             ACCUM @@risk_flags += c.risk_flags;
+
+    // Get cards
+    cards = SELECT card FROM target:c -(OWNS:e)- Card:card
+            ACCUM @@cards += CardInfo(card.id, card.card_type, card.card_network);
+
+    // Get devices
+    devices = SELECT dev FROM target:c -(USES_DEVICE:e)- Device:dev
+              ACCUM @@devices += DeviceInfo(dev.id, dev.device_type, dev.device_info);
+
+    // Get transactions and compute summary
+    txns = SELECT t FROM target:c -(<INITIATED_BY:e)- Transaction:t
+           ACCUM
+             @@txn_count += 1,
+             @@txn_total += t.amount,
+             @@txn_avg += t.amount,
+             @@first_txn += t.dt,
+             @@last_txn += t.dt;
+
+    // Get email domains from transactions
+    domain_nodes = SELECT d FROM txns:t -(TO_DOMAIN:e)- EmailDomain:d
+                   ACCUM @@domains += DomainInfo(d.id, d.domain, d.is_free_provider);
+
+    // Get prior fraud cases
+    fraud_cases = SELECT fc FROM target:c -(<ABOUT_CLIENT:e)- FraudCase:fc
+                  ACCUM @@cases += CaseInfo(fc.id, fc.status, fc.trigger_type, fc.opened_at);
+
+    PRINT client_id;
+    PRINT @@risk_flags AS risk_flags;
+    PRINT @@cards AS cards;
+    PRINT @@devices AS devices;
+    PRINT @@domains AS email_domains;
+    PRINT @@txn_count AS transaction_count;
+    PRINT @@txn_total AS transaction_total;
+    PRINT @@txn_avg AS transaction_avg;
+    PRINT @@first_txn AS first_transaction;
+    PRINT @@last_txn AS last_transaction;
+    PRINT @@cases AS prior_cases;
+}

@@ -1,0 +1,199 @@
+{
+  "case_id": "CASE-BENCH-013",
+  "client_id": "CLI-73349",
+  "leading_typology": "Account Takeover",
+  "confidence": 0.9,
+  "actions_taken": [
+    {
+      "action_type": "flag_for_review",
+      "requires_approval": false,
+      "approved_by": "system_auto"
+    },
+    {
+      "action_type": "freeze_account",
+      "requires_approval": true,
+      "approved_by": "pending_senior_analyst"
+    },
+    {
+      "action_type": "send_customer_message",
+      "requires_approval": false,
+      "approved_by": "system_auto"
+    },
+    {
+      "action_type": "request_stepup_auth",
+      "requires_approval": false,
+      "approved_by": "system_auto"
+    },
+    {
+      "action_type": "file_sar",
+      "requires_approval": true,
+      "approved_by": "pending_compliance_officer"
+    }
+  ],
+  "investigation_record": {
+    "evidence": [
+      "Client CLI-73349: 8 transactions totaling $4850.00, 2 cards, 1 devices, 0 prior cases, 2 ring neighbors",
+      "Found 2 similar past cases: 0 confirmed fraud, 0 cleared",
+      "Hypothesis: Account Takeover (confidence=0.90). Supporting signals: device_change, email_change, high_amount_after_reset, new_ip, velocity_spike. Contradicting signals: consistent_device.",
+      "Hypothesis: Synthetic Identity Fraud (confidence=0.70). Supporting signals: shared_device_ring, shared_email_ring, new_account, multiple_addresses. Contradicting signals: established_account.",
+      "Hypothesis: Card-Not-Present Fraud (confidence=0.10). Supporting signals: high_amount. Contradicting signals: known_device."
+    ],
+    "findings": [
+      {
+        "typology": "Account Takeover",
+        "typology_id": "TYP_ATO",
+        "confidence": 0.9
+      },
+      {
+        "typology": "Synthetic Identity Fraud",
+        "typology_id": "TYP_SYNTH",
+        "confidence": 0.7
+      },
+      {
+        "typology": "Card-Not-Present Fraud",
+        "typology_id": "TYP_CNP",
+        "confidence": 0.1
+      }
+    ],
+    "decisions": [
+      {
+        "action": "flag_for_review",
+        "approved_by": "system_auto",
+        "requires_approval": false,
+        "decided_at": "2026-09-23T16:49:24.248691"
+      },
+      {
+        "action": "freeze_account",
+        "approved_by": "pending_senior_analyst",
+        "requires_approval": true,
+        "decided_at": "2026-09-23T16:49:24.251683"
+      },
+      {
+        "action": "send_customer_message",
+        "approved_by": "system_auto",
+        "requires_approval": false,
+        "decided_at": "2026-09-23T16:49:24.252685"
+      },
+      {
+        "action": "request_stepup_auth",
+        "approved_by": "system_auto",
+        "requires_approval": false,
+        "decided_at": "2026-09-23T16:49:24.254693"
+      },
+      {
+        "action": "file_sar",
+        "approved_by": "pending_compliance_officer",
+        "requires_approval": true,
+        "decided_at": "2026-09-23T16:49:24.256691"
+      }
+    ],
+    "actions": [
+      "flag_for_review",
+      "freeze_account",
+      "send_customer_message",
+      "request_stepup_auth",
+      "file_sar"
+    ]
+  },
+  "case_subgraph": {
+    "Case": [
+      {
+        "v_id": "CASE_5ab19c84c5ea",
+        "v_type": "FraudCase",
+        "attributes": {
+          "narrative": "Simulated case narrative"
+        }
+      }
+    ],
+    "Client": [
+      {
+        "v_id": "CLI-DEFAULT",
+        "v_type": "Client",
+        "attributes": {}
+      }
+    ],
+    "Transactions": [
+      {
+        "v_id": "TXN-5ea-1",
+        "v_type": "Transaction",
+        "attributes": {
+          "amount": 1200.0
+        }
+      },
+      {
+        "v_id": "TXN-5ea-2",
+        "v_type": "Transaction",
+        "attributes": {
+          "amount": 1800.0
+        }
+      }
+    ],
+    "Evidence": [
+      {
+        "v_id": "EV-5ea-1",
+        "v_type": "EvidenceItem",
+        "attributes": {
+          "description": "Velocity burst detected"
+        }
+      }
+    ],
+    "Typologies": [
+      {
+        "v_id": "TYP-01",
+        "v_type": "TypologyPattern",
+        "attributes": {
+          "typology_name": "Card-Not-Present Velocity Attack"
+        }
+      }
+    ],
+    "Actions": [
+      {
+        "v_id": "ACT_BLOCK",
+        "v_type": "ActionType",
+        "attributes": {
+          "action_name": "block_card"
+        }
+      }
+    ],
+    "Policies": [
+      {
+        "v_id": "PR-102",
+        "v_type": "PolicyRule",
+        "attributes": {
+          "rule_name": "Velocity Attack Containment"
+        }
+      }
+    ],
+    "SupportsEdges": [
+      {
+        "from_id": "EV-5ea-1",
+        "to_id": "TYP-01",
+        "e_type": "SUPPORTS",
+        "attributes": {}
+      }
+    ],
+    "ContradictsEdges": [],
+    "EvidenceEdges": [
+      {
+        "from_id": "CASE_5ab19c84c5ea",
+        "to_id": "EV-5ea-1",
+        "e_type": "HAS_EVIDENCE",
+        "attributes": {}
+      }
+    ],
+    "ActionEdges": [
+      {
+        "from_id": "CASE_5ab19c84c5ea",
+        "to_id": "ACT_BLOCK",
+        "e_type": "TOOK_ACTION",
+        "attributes": {}
+      }
+    ]
+  },
+  "sar_required": true,
+  "next_best_action": "close_case",
+  "stop_reason": "policy_mandate",
+  "narrative": "## Fraud Investigation Report \u2014 Case CASE_5ab19c84c5ea\n**Client:** CLI-73349\n**Status:** decided\n**Stop Reason:** policy_mandate\n\n### Hypothesis Analysis\n\u2192 **Account Takeover**: 90.0% confidence\n  **Synthetic Identity Fraud**: 70.0% confidence\n  **Card-Not-Present Fraud**: 10.0% confidence\n\n### Evidence Trail\n1. Client CLI-73349: 8 transactions totaling $4850.00, 2 cards, 1 devices, 0 prior cases, 2 ring neighbors\n2. Found 2 similar past cases: 0 confirmed fraud, 0 cleared\n3. Hypothesis: Account Takeover (confidence=0.90). Supporting signals: device_change, email_change, high_amount_after_reset, new_ip, velocity_spike. Contradicting signals: consistent_device.\n4. Hypothesis: Synthetic Identity Fraud (confidence=0.70). Supporting signals: shared_device_ring, shared_email_ring, new_account, multiple_addresses. Contradicting signals: established_account.\n5. Hypothesis: Card-Not-Present Fraud (confidence=0.10). Supporting signals: high_amount. Contradicting signals: known_device.\n\n### Actions Taken\n- **flag_for_review**: Auto-executed\n- **freeze_account**: Pending approval from senior_analyst\n- **send_customer_message**: Auto-executed\n- **request_stepup_auth**: Auto-executed\n- **file_sar**: Pending approval from compliance_officer\n\n### Conclusion\nStrong evidence supports **Account Takeover** with 90.0% confidence.",
+  "duration_sec": 0.022,
+  "evidence_loop_count": 0
+}

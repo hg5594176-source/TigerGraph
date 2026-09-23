@@ -1,0 +1,35 @@
+CREATE QUERY get_ring_neighbors(STRING client_id, INT hops = 2) FOR GRAPH HHGOA_IEEE {
+    /*
+     * BFS over SHARED_DEVICE / SHARED_EMAIL edges up to `hops` steps.
+     * Returns connected clients with ring_score and shared attributes.
+     */
+
+    TYPEDEF TUPLE<STRING client_id, DOUBLE ring_score, STRING connection_type, STRING shared_attr, INT distance> NeighborInfo;
+    SetAccum<NeighborInfo> @@neighbors;
+
+    seed = {Client.*};
+    start = SELECT c FROM seed:c WHERE c.id == client_id;
+
+    // BFS expansion over shared edges
+    current = start;
+    FOREACH i IN RANGE[1, hops] DO
+        next_hop = SELECT neighbor
+                   FROM current:c -(SHARED_DEVICE:e)- Client:neighbor
+                   WHERE neighbor.id != client_id
+                   ACCUM @@neighbors += NeighborInfo(
+                       neighbor.id, e.ring_score, "shared_device", e.shared_device_id, i
+                   );
+
+        next_hop2 = SELECT neighbor
+                    FROM current:c -(SHARED_EMAIL:e)- Client:neighbor
+                    WHERE neighbor.id != client_id
+                    ACCUM @@neighbors += NeighborInfo(
+                        neighbor.id, e.ring_score, "shared_email", e.shared_domain, i
+                    );
+
+        current = next_hop UNION next_hop2;
+    END;
+
+    PRINT @@neighbors AS ring_neighbors;
+    PRINT current.size() AS total_ring_size;
+}

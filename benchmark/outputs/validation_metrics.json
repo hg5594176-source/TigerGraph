@@ -1,0 +1,178 @@
+{
+  "total_cases": 10,
+  "true_positives": 5,
+  "false_positives": 1,
+  "true_negatives": 4,
+  "false_negatives": 0,
+  "accuracy": 0.9,
+  "precision": 0.8333,
+  "recall": 1.0,
+  "f1_score": 0.9091,
+  "detailed_results": [
+    {
+      "case_id": "CASE-VAL-F01",
+      "client_id": "CLI-F8812",
+      "ground_truth": "FRAUD",
+      "prediction": "FRAUD",
+      "confidence": 0.9,
+      "leading_typology": "Account Takeover",
+      "actions_taken": [
+        "flag_for_review",
+        "freeze_account",
+        "send_customer_message",
+        "request_stepup_auth",
+        "file_sar"
+      ],
+      "sar_filed": true,
+      "verdict": "CORRECT (TP)",
+      "loop_count": 1
+    },
+    {
+      "case_id": "CASE-VAL-F02",
+      "client_id": "CLI-F2910",
+      "ground_truth": "FRAUD",
+      "prediction": "FRAUD",
+      "confidence": 0.7,
+      "leading_typology": "Synthetic Identity Fraud",
+      "actions_taken": [
+        "flag_for_review",
+        "freeze_account",
+        "file_sar"
+      ],
+      "sar_filed": true,
+      "verdict": "CORRECT (TP)",
+      "loop_count": 0
+    },
+    {
+      "case_id": "CASE-VAL-F03",
+      "client_id": "CLI-F7703",
+      "ground_truth": "FRAUD",
+      "prediction": "FRAUD",
+      "confidence": 0.9,
+      "leading_typology": "Account Takeover",
+      "actions_taken": [
+        "flag_for_review",
+        "freeze_account",
+        "send_customer_message",
+        "request_stepup_auth",
+        "file_sar"
+      ],
+      "sar_filed": true,
+      "verdict": "CORRECT (TP)",
+      "loop_count": 0
+    },
+    {
+      "case_id": "CASE-VAL-F04",
+      "client_id": "CLI-F4419",
+      "ground_truth": "FRAUD",
+      "prediction": "FRAUD",
+      "confidence": 1.0,
+      "leading_typology": "Card Testing / BIN Attack",
+      "actions_taken": [
+        "flag_for_review",
+        "block_card",
+        "send_customer_message",
+        "file_sar"
+      ],
+      "sar_filed": true,
+      "verdict": "CORRECT (TP)",
+      "loop_count": 0
+    },
+    {
+      "case_id": "CASE-VAL-F05",
+      "client_id": "CLI-F6622",
+      "ground_truth": "FRAUD",
+      "prediction": "FRAUD",
+      "confidence": 0.7,
+      "leading_typology": "Synthetic Identity Fraud",
+      "actions_taken": [
+        "flag_for_review",
+        "freeze_account",
+        "file_sar"
+      ],
+      "sar_filed": true,
+      "verdict": "CORRECT (TP)",
+      "loop_count": 0
+    },
+    {
+      "case_id": "CASE-VAL-C01",
+      "client_id": "CLI-C1029",
+      "ground_truth": "CLEARED",
+      "prediction": "CLEARED",
+      "confidence": 0.4,
+      "leading_typology": "Card-Not-Present Fraud",
+      "actions_taken": [
+        "flag_for_review",
+        "request_stepup_auth",
+        "send_customer_message"
+      ],
+      "sar_filed": false,
+      "verdict": "CORRECT (TN)",
+      "loop_count": 2
+    },
+    {
+      "case_id": "CASE-VAL-C02",
+      "client_id": "CLI-C3840",
+      "ground_truth": "CLEARED",
+      "prediction": "CLEARED",
+      "confidence": 0.4,
+      "leading_typology": "Card-Not-Present Fraud",
+      "actions_taken": [
+        "flag_for_review",
+        "request_stepup_auth",
+        "send_customer_message"
+      ],
+      "sar_filed": false,
+      "verdict": "CORRECT (TN)",
+      "loop_count": 2
+    },
+    {
+      "case_id": "CASE-VAL-C03",
+      "client_id": "CLI-C5912",
+      "ground_truth": "CLEARED",
+      "prediction": "CLEARED",
+      "confidence": 0.4,
+      "leading_typology": "Card-Not-Present Fraud",
+      "actions_taken": [
+        "flag_for_review",
+        "request_stepup_auth",
+        "send_customer_message"
+      ],
+      "sar_filed": false,
+      "verdict": "CORRECT (TN)",
+      "loop_count": 2
+    },
+    {
+      "case_id": "CASE-VAL-C04",
+      "client_id": "CLI-C8421",
+      "ground_truth": "CLEARED",
+      "prediction": "FRAUD",
+      "confidence": 0.7,
+      "leading_typology": "Synthetic Identity Fraud",
+      "actions_taken": [
+        "flag_for_review",
+        "freeze_account",
+        "file_sar"
+      ],
+      "sar_filed": true,
+      "verdict": "FALSE ALARM (FP)",
+      "loop_count": 0
+    },
+    {
+      "case_id": "CASE-VAL-C05",
+      "client_id": "CLI-C9118",
+      "ground_truth": "CLEARED",
+      "prediction": "CLEARED",
+      "confidence": 0.4,
+      "leading_typology": "Card-Not-Present Fraud",
+      "actions_taken": [
+        "flag_for_review",
+        "request_stepup_auth",
+        "send_customer_message"
+      ],
+      "sar_filed": false,
+      "verdict": "CORRECT (TN)",
+      "loop_count": 2
+    }
+  ]
+}

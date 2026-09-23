@@ -1,0 +1,83 @@
+CREATE QUERY get_case_subgraph(STRING case_id) FOR GRAPH HHGOA_IEEE {
+    /*
+     * Returns the full evidence → decision → action trail for one case.
+     * Powers both the explainability UI panel and the answer-file generation.
+     * Returns traversal-ordered subgraph.
+     */
+
+    TYPEDEF TUPLE<STRING id, STRING kind, STRING summary, DATETIME collected_at, STRING source> EvidenceInfo;
+    TYPEDEF TUPLE<STRING evidence_id, STRING typology_id, STRING typology_name, STRING relation, DOUBLE weight> SupportInfo;
+    TYPEDEF TUPLE<STRING action_id, STRING action_name, BOOL reversible, DATETIME decided_at, STRING approved_by> ActionInfo;
+    TYPEDEF TUPLE<STRING rule_id, STRING section, STRING text> PolicyInfo;
+
+    // Case metadata
+    STRING @@case_status;
+    STRING @@trigger_type;
+    DATETIME @@opened_at;
+    STRING @@client_id;
+
+    // Collections
+    SetAccum<EvidenceInfo> @@evidence_items;
+    SetAccum<SupportInfo> @@support_links;
+    SetAccum<ActionInfo> @@actions_taken;
+    SetAccum<PolicyInfo> @@applicable_policies;
+    SetAccum<STRING> @@investigated_txns;
+
+    // Find the case
+    all_cases = {FraudCase.*};
+    target_case = SELECT fc FROM all_cases:fc
+                  WHERE fc.id == case_id
+                  ACCUM
+                      @@case_status += fc.status,
+                      @@trigger_type += fc.trigger_type,
+                      @@opened_at += fc.opened_at;
+
+    // Get client
+    client = SELECT c FROM target_case:fc -(ABOUT_CLIENT:e)- Client:c
+             ACCUM @@client_id += c.id;
+
+    // Get investigated transactions
+    txns = SELECT t FROM target_case:fc -(INVESTIGATES:e)- Transaction:t
+           ACCUM @@investigated_txns += t.id;
+
+    // Get evidence items
+    evidence = SELECT ei FROM target_case:fc -(HAS_EVIDENCE:e)- EvidenceItem:ei
+               ACCUM @@evidence_items += EvidenceInfo(
+                   ei.id, ei.kind, ei.summary, ei.collected_at, ei.source
+               );
+
+    // Get support/contradict links from evidence to typologies
+    supports = SELECT tp FROM evidence:ei -(SUPPORTS:e)- TypologyPattern:tp
+               ACCUM @@support_links += SupportInfo(
+                   ei.id, tp.id, tp.name, "supports", e.weight
+               );
+
+    contradicts = SELECT tp FROM evidence:ei -(CONTRADICTS:e)- TypologyPattern:tp
+                  ACCUM @@support_links += SupportInfo(
+                      ei.id, tp.id, tp.name, "contradicts", e.weight
+                  );
+
+    // Get actions taken
+    actions = SELECT at FROM target_case:fc -(TOOK_ACTION:e)- ActionType:at
+              ACCUM @@actions_taken += ActionInfo(
+                  at.id, at.name, at.reversible, e.decided_at, e.approved_by
+              );
+
+    // Get applicable policies for involved typologies
+    all_typologies = supports UNION contradicts;
+    policies = SELECT pr FROM all_typologies:tp -(<APPLIES_TO:e)- PolicyRule:pr
+               ACCUM @@applicable_policies += PolicyInfo(
+                   pr.id, pr.section, pr.text
+               );
+
+    PRINT case_id;
+    PRINT @@case_status AS status;
+    PRINT @@trigger_type AS trigger_type;
+    PRINT @@opened_at AS opened_at;
+    PRINT @@client_id AS client_id;
+    PRINT @@investigated_txns AS investigated_transactions;
+    PRINT @@evidence_items AS evidence;
+    PRINT @@support_links AS typology_links;
+    PRINT @@actions_taken AS actions;
+    PRINT @@applicable_policies AS policies;
+}

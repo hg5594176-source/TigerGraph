@@ -1,0 +1,235 @@
+{
+  "timestamp": "2026-09-23T16:49:24Z",
+  "total_cases": 20,
+  "successful_cases": 20,
+  "failed_cases": 0,
+  "avg_duration_sec": 0.02,
+  "sar_filings_count": 20,
+  "typology_distribution": {
+    "Account Takeover": 6,
+    "Synthetic Identity Fraud": 11,
+    "Card Testing / BIN Attack": 3
+  },
+  "case_results": [
+    {
+      "case_id": "CASE-BENCH-001",
+      "status": "SUCCESS",
+      "leading_typology": "Account Takeover",
+      "confidence": 0.9,
+      "actions_count": 5,
+      "sar_filed": true,
+      "stop_reason": "policy_mandate",
+      "loops": 1,
+      "duration_sec": 0.033
+    },
+    {
+      "case_id": "CASE-BENCH-002",
+      "status": "SUCCESS",
+      "leading_typology": "Synthetic Identity Fraud",
+      "confidence": 0.7,
+      "actions_count": 3,
+      "sar_filed": true,
+      "stop_reason": "confident",
+      "loops": 0,
+      "duration_sec": 0.014
+    },
+    {
+      "case_id": "CASE-BENCH-003",
+      "status": "SUCCESS",
+      "leading_typology": "Synthetic Identity Fraud",
+      "confidence": 0.7,
+      "actions_count": 3,
+      "sar_filed": true,
+      "stop_reason": "confident",
+      "loops": 0,
+      "duration_sec": 0.014
+    },
+    {
+      "case_id": "CASE-BENCH-004",
+      "status": "SUCCESS",
+      "leading_typology": "Synthetic Identity Fraud",
+      "confidence": 0.7,
+      "actions_count": 3,
+      "sar_filed": true,
+      "stop_reason": "confident",
+      "loops": 0,
+      "duration_sec": 0.014
+    },
+    {
+      "case_id": "CASE-BENCH-005",
+      "status": "SUCCESS",
+      "leading_typology": "Synthetic Identity Fraud",
+      "confidence": 0.7,
+      "actions_count": 3,
+      "sar_filed": true,
+      "stop_reason": "confident",
+      "loops": 0,
+      "duration_sec": 0.015
+    },
+    {
+      "case_id": "CASE-BENCH-006",
+      "status": "SUCCESS",
+      "leading_typology": "Account Takeover",
+      "confidence": 0.9,
+      "actions_count": 5,
+      "sar_filed": true,
+      "stop_reason": "policy_mandate",
+      "loops": 1,
+      "duration_sec": 0.025
+    },
+    {
+      "case_id": "CASE-BENCH-007",
+      "status": "SUCCESS",
+      "leading_typology": "Synthetic Identity Fraud",
+      "confidence": 0.7,
+      "actions_count": 3,
+      "sar_filed": true,
+      "stop_reason": "confident",
+      "loops": 0,
+      "duration_sec": 0.017
+    },
+    {
+      "case_id": "CASE-BENCH-008",
+      "status": "SUCCESS",
+      "leading_typology": "Synthetic Identity Fraud",
+      "confidence": 0.7,
+      "actions_count": 3,
+      "sar_filed": true,
+      "stop_reason": "confident",
+      "loops": 0,
+      "duration_sec": 0.015
+    },
+    {
+      "case_id": "CASE-BENCH-009",
+      "status": "SUCCESS",
+      "leading_typology": "Synthetic Identity Fraud",
+      "confidence": 0.7,
+      "actions_count": 3,
+      "sar_filed": true,
+      "stop_reason": "confident",
+      "loops": 0,
+      "duration_sec": 0.013
+    },
+    {
+      "case_id": "CASE-BENCH-010",
+      "status": "SUCCESS",
+      "leading_typology": "Synthetic Identity Fraud",
+      "confidence": 0.7,
+      "actions_count": 3,
+      "sar_filed": true,
+      "stop_reason": "confident",
+      "loops": 0,
+      "duration_sec": 0.017
+    },
+    {
+      "case_id": "CASE-BENCH-011",
+      "status": "SUCCESS",
+      "leading_typology": "Synthetic Identity Fraud",
+      "confidence": 0.7,
+      "actions_count": 3,
+      "sar_filed": true,
+      "stop_reason": "confident",
+      "loops": 0,
+      "duration_sec": 0.016
+    },
+    {
+      "case_id": "CASE-BENCH-012",
+      "status": "SUCCESS",
+      "leading_typology": "Card Testing / BIN Attack",
+      "confidence": 1.0,
+      "actions_count": 4,
+      "sar_filed": true,
+      "stop_reason": "confident",
+      "loops": 0,
+      "duration_sec": 0.019
+    },
+    {
+      "case_id": "CASE-BENCH-013",
+      "status": "SUCCESS",
+      "leading_typology": "Account Takeover",
+      "confidence": 0.9,
+      "actions_count": 5,
+      "sar_filed": true,
+      "stop_reason": "policy_mandate",
+      "loops": 0,
+      "duration_sec": 0.022
+    },
+    {
+      "case_id": "CASE-BENCH-014",
+      "status": "SUCCESS",
+      "leading_typology": "Synthetic Identity Fraud",
+      "confidence": 0.7,
+      "actions_count": 3,
+      "sar_filed": true,
+      "stop_reason": "confident",
+      "loops": 0,
+      "duration_sec": 0.014
+    },
+    {
+      "case_id": "CASE-BENCH-015",
+      "status": "SUCCESS",
+      "leading_typology": "Account Takeover",
+      "confidence": 0.9,
+      "actions_count": 5,
+      "sar_filed": true,
+      "stop_reason": "policy_mandate",
+      "loops": 1,
+      "duration_sec": 0.032
+    },
+    {
+      "case_id": "CASE-BENCH-016",
+      "status": "SUCCESS",
+      "leading_typology": "Synthetic Identity Fraud",
+      "confidence": 0.7,
+      "actions_count": 3,
+      "sar_filed": true,
+      "stop_reason": "confident",
+      "loops": 0,
+      "duration_sec": 0.015
+    },
+    {
+      "case_id": "CASE-BENCH-017",
+      "status": "SUCCESS",
+      "leading_typology": "Account Takeover",
+      "confidence": 0.9,
+      "actions_count": 5,
+      "sar_filed": true,
+      "stop_reason": "policy_mandate",
+      "loops": 1,
+      "duration_sec": 0.02
+    },
+    {
+      "case_id": "CASE-BENCH-018",
+      "status": "SUCCESS",
+      "leading_typology": "Account Takeover",
+      "confidence": 0.9,
+      "actions_count": 5,
+      "sar_filed": true,
+      "stop_reason": "policy_mandate",
+      "loops": 0,
+      "duration_sec": 0.018
+    },
+    {
+      "case_id": "CASE-BENCH-019",
+      "status": "SUCCESS",
+      "leading_typology": "Card Testing / BIN Attack",
+      "confidence": 1.0,
+      "actions_count": 4,
+      "sar_filed": true,
+      "stop_reason": "confident",
+      "loops": 0,
+      "duration_sec": 0.015
+    },
+    {
+      "case_id": "CASE-BENCH-020",
+      "status": "SUCCESS",
+      "leading_typology": "Card Testing / BIN Attack",
+      "confidence": 1.0,
+      "actions_count": 4,
+      "sar_filed": true,
+      "stop_reason": "confident",
+      "loops": 0,
+      "duration_sec": 0.015
+    }
+  ]
+}

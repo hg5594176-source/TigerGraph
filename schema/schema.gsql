@@ -1,0 +1,98 @@
+// ============================================================
+// TigerGraph Schema — HHGOA Agentic Fraud Investigation
+// 11 Vertex Types, 13+ Edge Types
+// ============================================================
+
+// --- Core Identity Vertices ---
+CREATE VERTEX Client (PRIMARY_ID id STRING, first_seen DATETIME, risk_flags SET<STRING>)
+    WITH STATS="OUTDEGREE_BY_EDGETYPE"
+
+CREATE VERTEX Card (PRIMARY_ID id STRING, card_type STRING, card_network STRING)
+    WITH STATS="OUTDEGREE_BY_EDGETYPE"
+
+CREATE VERTEX Device (PRIMARY_ID id STRING, device_type STRING, device_info STRING)
+    WITH STATS="OUTDEGREE_BY_EDGETYPE"
+
+CREATE VERTEX EmailDomain (PRIMARY_ID id STRING, domain STRING, is_free_provider BOOL)
+    WITH STATS="OUTDEGREE_BY_EDGETYPE"
+
+// --- Transaction Vertex ---
+CREATE VERTEX Transaction (PRIMARY_ID id STRING, amount DOUBLE, dt DATETIME,
+    risk_score DOUBLE, product_code STRING)
+    WITH STATS="OUTDEGREE_BY_EDGETYPE"
+
+// --- Investigation Vertices ---
+CREATE VERTEX FraudCase (PRIMARY_ID id STRING, opened_at DATETIME,
+    status STRING, trigger_type STRING)
+    WITH STATS="OUTDEGREE_BY_EDGETYPE"
+
+CREATE VERTEX EvidenceItem (PRIMARY_ID id STRING, kind STRING, summary STRING,
+    collected_at DATETIME, source STRING)
+    WITH STATS="OUTDEGREE_BY_EDGETYPE"
+
+CREATE VERTEX TypologyPattern (PRIMARY_ID id STRING, name STRING,
+    description STRING, documented BOOL)
+    WITH"OUTDEGREE_BY_EDGETYPE"
+
+CREATE VERTEX ActionType (PRIMARY_ID id STRING, name STRING, reversible BOOL)
+    WITH STATS="OUTDEGREE_BY_EDGETYPE"
+
+// --- Policy & Role Vertices ---
+CREATE VERTEX PolicyRule (PRIMARY_ID id STRING, text STRING, section STRING)
+    WITH STATS="OUTDEGREE_BY_EDGETYPE"
+
+CREATE VERTEX Role (PRIMARY_ID id STRING, name STRING)
+    WITH STATS="OUTDEGREE_BY_EDGETYPE"
+
+// ============================================================
+// Edges — Identity Graph
+// ============================================================
+CREATE UNDIRECTED EDGE OWNS (FROM Client, TO Card)
+CREATE UNDIRECTED EDGE USES_DEVICE (FROM Client, TO Device)
+
+// ============================================================
+// Edges — Transaction Links
+// ============================================================
+CREATE DIRECTED EDGE PAID_WITH (FROM Transaction, TO Card)
+CREATE DIRECTED EDGE INITIATED_BY (FROM Transaction, TO Client)
+CREATE DIRECTED EDGE FROM_DEVICE (FROM Transaction, TO Device)
+CREATE DIRECTED EDGE TO_DOMAIN (FROM Transaction, TO EmailDomain)
+
+// ============================================================
+// Edges — Investigation / Case Graph
+// ============================================================
+CREATE DIRECTED EDGE INVESTIGATES (FROM FraudCase, TO Transaction)
+CREATE DIRECTED EDGE ABOUT_CLIENT (FROM FraudCase, TO Client)
+CREATE DIRECTED EDGE HAS_EVIDENCE (FROM FraudCase, TO EvidenceItem,
+    added_at DATETIME)
+CREATE DIRECTED EDGE SUPPORTS (FROM EvidenceItem, TO TypologyPattern,
+    weight DOUBLE)
+CREATE DIRECTED EDGE CONTRADICTS (FROM EvidenceItem, TO TypologyPattern,
+    weight DOUBLE)
+CREATE DIRECTED EDGE TOOK_ACTION (FROM FraudCase, TO ActionType,
+    decided_at DATETIME, approved_by STRING)
+
+// ============================================================
+// Edges — Policy Enforcement
+// ============================================================
+CREATE DIRECTED EDGE APPLIES_TO (FROM PolicyRule, TO TypologyPattern)
+CREATE DIRECTED EDGE REQUIRES_APPROVAL_FROM (FROM ActionType, TO Role)
+
+// ============================================================
+// Edges — Ring / Shared-Entity Links (materialized by ring detection)
+// ============================================================
+CREATE UNDIRECTED EDGE SHARED_DEVICE (FROM Client, TO Client,
+    ring_score DOUBLE, shared_device_id STRING)
+CREATE UNDIRECTED EDGE SHARED_EMAIL (FROM Client, TO Client,
+    ring_score DOUBLE, shared_domain STRING)
+
+// ============================================================
+// Create Graph
+// ============================================================
+CREATE GRAPH HHGOA_IEEE (
+    Client, Card, Device, EmailDomain, Transaction,
+    FraudCase, EvidenceItem, TypologyPattern, ActionType, PolicyRule, Role,
+    OWNS, USES_DEVICE, PAID_WITH, INITIATED_BY, FROM_DEVICE, TO_DOMAIN,
+    INVESTIGATES, ABOUT_CLIENT, HAS_EVIDENCE, SUPPORTS, CONTRADICTS,
+    TOOK_ACTION, APPLIES_TO, REQUIRES_APPROVAL_FROM, SHARED_DEVICE, SHARED_EMAIL
+)

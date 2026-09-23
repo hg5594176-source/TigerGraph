@@ -1,0 +1,74 @@
+CREATE QUERY find_similar_closed_cases(STRING client_id, STRING typology_id, INT k = 5) FOR GRAPH HHGOA_IEEE {
+    /*
+     * Structural similarity search: finds closed FraudCases with similar
+     * characteristics (shared typology, similar ring connectivity, similar
+     * transaction velocity) as a pre-filter before vector reranking.
+     */
+
+    TYPEDEF TUPLE<STRING case_id, STRING status, DOUBLE similarity_score, STRING matched_typology, INT shared_evidence_count> CaseMatch;
+    HeapAccum<CaseMatch>(k, similarity_score DESC) @@top_cases;
+
+    // Get target client's features
+    SumAccum<INT> @@target_txn_count;
+    SumAccum<DOUBLE> @@target_txn_total;
+    SumAccum<INT> @@target_ring_size;
+
+    seed = {Client.*};
+    target = SELECT c FROM seed:c WHERE c.id == client_id;
+
+    // Count target's transactions
+    target_txns = SELECT t FROM target:c -(<INITIATED_BY)- Transaction:t
+                  ACCUM @@target_txn_count += 1, @@target_txn_total += t.amount;
+
+    // Count target's ring neighbors
+    ring = SELECT n FROM target:c -(SHARED_DEVICE|SHARED_EMAIL)- Client:n
+           ACCUM @@target_ring_size += 1;
+
+    // Search all closed cases
+    all_cases = {FraudCase.*};
+    closed_cases = SELECT fc FROM all_cases:fc
+                   WHERE fc.status == "confirmed_fraud" OR fc.status == "cleared"
+                   POST-ACCUM
+                       // Compute similarity per case
+                       DOUBLE score = 0.0,
+                       INT evidence_count = 0,
+
+                       // Check if case has evidence supporting the target typology
+                       FOREACH e IN fc.neighbors("HAS_EVIDENCE") DO
+                           FOREACH tp IN e.neighbors("SUPPORTS") DO
+                               IF tp.id == typology_id THEN
+                                   score = score + 0.4,
+                                   evidence_count = evidence_count + 1
+                               END
+                           END
+                       END,
+
+                       // Check if case's client has similar transaction volume
+                       FOREACH c IN fc.neighbors("ABOUT_CLIENT") DO
+                           SumAccum<INT> case_txn_count,
+                           SumAccum<DOUBLE> case_txn_total,
+                           FOREACH t IN c.neighbors("INITIATED_BY") DO
+                               case_txn_count += 1,
+                               case_txn_total += t.amount
+                           END,
+                           // Volume similarity (0-0.3)
+                           IF @@target_txn_count > 0 AND case_txn_count > 0 THEN
+                               DOUBLE ratio = 0.0,
+                               IF case_txn_count > @@target_txn_count THEN
+                                   ratio = @@target_txn_count * 1.0 / case_txn_count
+                               ELSE
+                                   ratio = case_txn_count * 1.0 / @@target_txn_count
+                               END,
+                               score = score + ratio * 0.3
+                           END
+                       END,
+
+                       // Ring connectivity bonus (0-0.3)
+                       IF @@target_ring_size > 0 THEN
+                           score = score + 0.3
+                       END,
+
+                       @@top_cases += CaseMatch(fc.id, fc.status, score, typology_id, evidence_count);
+
+    PRINT @@top_cases AS similar_cases;
+}
